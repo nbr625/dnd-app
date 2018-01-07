@@ -6,10 +6,16 @@ import InlineError from '../messages/InlineError';
 
 
 class LoginForm extends React.Component {
-  state = {
-    data: {},
-    loading: false,
-    errors: {}
+  constructor(){
+    super();
+    this.state = {
+      data: {
+        email: "",
+        password: ""
+      },
+      loading: false,
+      errors: {}
+    }
   }
 
   onChange = e =>

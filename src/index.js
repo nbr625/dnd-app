@@ -9,11 +9,17 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
 import rootReducer from './rootReducer';
+import { userLoggedIn } from './actions/auth';
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+if(localStorage.dndJWT) {
+  const user = { token: localStorage.dndJWT };
+  store.dispatch(userLoggedIn(user))
+}
 
 ReactDOM.render(
   <BrowserRouter>
