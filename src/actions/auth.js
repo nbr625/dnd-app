@@ -20,3 +20,17 @@ export const logout = () => dispatch => {
   localStorage.removeItem('dndJWT');
   dispatch(userLoggedOut())
 };
+
+export const confirm = token => dispatch =>
+api.user.confirm(token).then(user => {
+  localStorage.dndJWT = user.token;
+  dispatch(userLoggedIn(user));
+})
+
+export const resetPasswordRequest = ({email}) => () =>
+  api.user.resetPasswordRequest(email)
+
+export const validateToken = token => () =>
+  api.user.validateToken(token)
+
+export const resetPassword = data => () => api.user.resetPassword(data)
